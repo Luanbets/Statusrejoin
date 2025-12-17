@@ -1,5 +1,5 @@
 {
-  "updated_at": "2025-12-18 04:38:06",
+  "updated_at": "2025-12-18 04:38:11",
   "owner": "Đinh Văn Luận",
   "all_ok": true,
   "accounts": [
@@ -15,9 +15,9 @@
       "status": "Đang chạy ổn định",
       "status_icon": "🟢",
       "exploit_ok": true,
-      "fps": "38",
-      "ping": "142ms",
-      "uptime": "1 phút 4 giây",
+      "fps": "29",
+      "ping": "105ms",
+      "uptime": "1 phút 9 giây",
       "event_log": [
         "04:36:27 - Chọn server 6ms, 1 người",
         "04:37:01 - Vào game thành công"
