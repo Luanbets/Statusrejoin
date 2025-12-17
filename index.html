@@ -16,7 +16,7 @@ body {
 h1 {
   color: #58a6ff;
   font-size: 20px;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .subtitle {
@@ -71,28 +71,38 @@ h1 {
 <body>
 
 <h1>ROBLOX STATUS MONITOR</h1>
-<div class="subtitle">Live view từ <code>status.json</code></div>
+<div class="subtitle">Live monitor · auto refresh · no cache</div>
 
 <div id="content">Đang tải dữ liệu...</div>
 
 <div class="footer">
-  GitHub Pages · Auto fetch JSON · View-only
+  GitHub Pages · JSON auto fetch · Terminal dashboard
 </div>
 
 <script>
-fetch("status.json")
-  .then(r => r.json())
-  .then(data => render(data))
-  .catch(() => {
-    document.getElementById("content").innerText = "Không tải được status.json";
-  });
+let lastRender = "";
 
-function render(data) {
-  const root = document.getElementById("content");
-  root.innerHTML = "";
+function fetchStatus() {
+  fetch("status.json?ts=" + Date.now())   // 🔥 FIX CACHE
+    .then(r => r.json())
+    .then(data => {
+      const html = buildHTML(data);
+      if (html !== lastRender) {           // tránh render thừa
+        document.getElementById("content").innerHTML = html;
+        lastRender = html;
+      }
+    })
+    .catch(() => {
+      document.getElementById("content").innerText =
+        "Không tải được status.json";
+    });
+}
+
+function buildHTML(data) {
+  let html = "";
 
   // GLOBAL
-  root.innerHTML += `
+  html += `
     <div class="box">
       <div class="summary">
         <div>GLOBAL</div>
@@ -109,22 +119,25 @@ function render(data) {
 
   // ACCOUNTS
   data.accounts.forEach((acc, i) => {
-    let color = acc.status_icon === "🟢" ? "ok"
-              : acc.status_icon === "🟡" ? "warn"
-              : "err";
+    let color =
+      acc.status_icon === "🟢" ? "ok" :
+      acc.status_icon === "🟡" ? "warn" : "err";
 
-    let logs = acc.event_log.map(l => `<div>• ${l}</div>`).join("");
+    let logs = acc.event_log
+      .map(l => `<div>• ${l}</div>`)
+      .join("");
 
-    root.innerHTML += `
+    html += `
       <div class="box">
         <div class="summary" onclick="toggle(this)">
-          <div>Acc #${i+1} · ${acc.package}</div>
+          <div>Acc #${i + 1} · ${acc.package}</div>
           <div class="${color}">
             ${acc.status_icon} ${acc.status}
           </div>
         </div>
 
         <div class="details">
+          User ID: ${acc.user_id}<br>
           Username: ${acc.username}<br>
           Game ID: ${acc.game_id}<br>
           Server: ${acc.server_type} · ${acc.server_id}<br>
@@ -143,15 +156,19 @@ function render(data) {
       </div>
     `;
   });
+
+  return html;
 }
 
 function toggle(el) {
   const d = el.nextElementSibling;
   d.style.display = d.style.display === "block" ? "none" : "block";
 }
+
+// ⏱ LẦN ĐẦU + AUTO REFRESH
+fetchStatus();
+setInterval(fetchStatus, 5000); // 5 giây
 </script>
 
 </body>
 </html>
-
-<!-- rebuild -->
