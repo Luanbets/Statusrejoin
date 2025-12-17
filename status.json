@@ -1,5 +1,5 @@
 {
-  "updated_at": "2025-12-18 04:53:40",
+  "updated_at": "2025-12-18 04:53:44",
   "owner": "Đinh Văn Luận",
   "all_ok": true,
   "accounts": [
@@ -17,7 +17,7 @@
       "exploit_ok": true,
       "fps": "19",
       "ping": "178ms",
-      "uptime": "0 phút 11 giây",
+      "uptime": "0 phút 16 giây",
       "event_log": [
         "04:50:45 - Chọn server 13ms, 1 người",
         "04:52:47 - Exploit chưa load (timeout 90s)",
