@@ -1,5 +1,5 @@
 {
-  "updated_at": "2025-12-18 04:53:23",
+  "updated_at": "2025-12-18 04:53:27",
   "owner": "Đinh Văn Luận",
   "all_ok": false,
   "accounts": [
@@ -12,7 +12,7 @@
       "server_id": "6802aa26...",
       "server_players": "1/?",
       "server_ping": "5ms",
-      "status": "Đang chờ vô game...",
+      "status": "Đã vào game - Chờ exploit...",
       "status_icon": "🟡",
       "exploit_ok": false,
       "fps": "N/A",
