@@ -1,99 +1,144 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <title>Roblox Multi Monitor</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<title>Roblox Multi Monitor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      background: #0b0f14;
-      color: #c9d1d9;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      padding: 16px;
-      line-height: 1.5;
-    }
+<style>
+body {
+  background: #0b0f14;
+  color: #c9d1d9;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  padding: 14px;
+}
 
-    .title {
-      color: #58a6ff;
-      font-size: 20px;
-      margin-bottom: 8px;
-    }
+h1 {
+  color: #58a6ff;
+  font-size: 20px;
+  margin-bottom: 4px;
+}
 
-    .subtitle {
-      color: #8b949e;
-      margin-bottom: 16px;
-    }
+.subtitle {
+  color: #8b949e;
+  margin-bottom: 16px;
+}
 
-    .box {
-      border: 1px solid #30363d;
-      padding: 12px;
-      margin-bottom: 12px;
-      border-radius: 6px;
-    }
+.box {
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
 
-    .ok { color: #3fb950; }
-    .warn { color: #d29922; }
-    .err { color: #f85149; }
+.summary {
+  padding: 12px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-    .row {
-      display: flex;
-      justify-content: space-between;
-    }
+.summary:hover {
+  background: #161b22;
+}
 
-    .footer {
-      margin-top: 20px;
-      color: #6e7681;
-      font-size: 13px;
-    }
-  </style>
+.details {
+  display: none;
+  padding: 12px;
+  border-top: 1px solid #30363d;
+  background: #0d1117;
+  font-size: 14px;
+}
+
+.ok { color: #3fb950; }
+.warn { color: #d29922; }
+.err { color: #f85149; }
+
+.dot {
+  margin-right: 6px;
+}
+
+.footer {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #6e7681;
+}
+</style>
 </head>
 
 <body>
-  <div class="title">ROBLOX MULTI MONITOR</div>
-  <div class="subtitle">Terminal-style dashboard (GitHub Pages)</div>
 
-  <!-- GLOBAL STATUS -->
-  <div class="box">
-    <div class="row">
-      <div>GLOBAL STATUS</div>
-      <div class="ok">RUNNING</div>
-    </div>
-    <div>Last update: 02:30:12</div>
-  </div>
+<h1>ROBLOX MULTI MONITOR</h1>
+<div class="subtitle">Click account để xem chi tiết</div>
 
-  <!-- ACCOUNT 1 -->
-  <div class="box">
-    <div class="row">
-      <div>Acc #1: Luan_Main</div>
-      <div class="ok">● STABLE</div>
-    </div>
-    <div>FPS / Ping: 60 / 82ms</div>
-    <div>Uptime: 2h 14m</div>
+<!-- GLOBAL -->
+<div class="box">
+  <div class="summary">
+    <div>GLOBAL STATUS</div>
+    <div class="ok">RUNNING</div>
   </div>
+  <div class="details" style="display:block">
+    Last update: 02:30:12
+  </div>
+</div>
 
-  <!-- ACCOUNT 2 -->
-  <div class="box">
-    <div class="row">
-      <div>Acc #2: Clone_02</div>
-      <div class="warn">● REJOINING</div>
-    </div>
-    <div>FPS / Ping: -- / --</div>
-    <div>Uptime: 47m</div>
+<!-- ACCOUNT 1 -->
+<div class="box">
+  <div class="summary" onclick="toggle(this)">
+    <div>Acc #1: Luan_Main</div>
+    <div class="ok"><span class="dot">●</span>STABLE</div>
   </div>
+  <div class="details">
+    FPS: 60<br>
+    Ping: 82 ms<br>
+    Uptime: 2h 14m<br>
+    Server: Blox Fruits #12<br>
+    Last event: None
+  </div>
+</div>
 
-  <!-- ACCOUNT 3 -->
-  <div class="box">
-    <div class="row">
-      <div>Acc #3: Clone_03</div>
-      <div class="err">● ERROR</div>
-    </div>
-    <div>FPS / Ping: 55 / 190ms</div>
-    <div>Uptime: 18m</div>
+<!-- ACCOUNT 2 -->
+<div class="box">
+  <div class="summary" onclick="toggle(this)">
+    <div>Acc #2: Clone_02</div>
+    <div class="warn"><span class="dot">●</span>REJOINING</div>
   </div>
+  <div class="details">
+    FPS: --<br>
+    Ping: --<br>
+    Uptime: 47m<br>
+    Reason: Server hop<br>
+    Retry count: 2
+  </div>
+</div>
 
-  <div class="footer">
-    View-only dashboard · No backend · GitHub Pages
+<!-- ACCOUNT 3 -->
+<div class="box">
+  <div class="summary" onclick="toggle(this)">
+    <div>Acc #3: Clone_03</div>
+    <div class="err"><span class="dot">●</span>ERROR</div>
   </div>
+  <div class="details">
+    FPS: 55<br>
+    Ping: 190 ms<br>
+    Uptime: 18m<br>
+    Error: Lost connection<br>
+    Last reconnect: failed
+  </div>
+</div>
+
+<div class="footer">
+  View-only · GitHub Pages · No backend
+</div>
+
+<script>
+function toggle(el) {
+  const box = el.parentElement;
+  const detail = box.querySelector('.details');
+  detail.style.display = detail.style.display === 'block' ? 'none' : 'block';
+}
+</script>
+
 </body>
 </html>
