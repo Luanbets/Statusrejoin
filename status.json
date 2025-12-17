@@ -1,1 +1,26 @@
-
+{
+  "updated_at": "2025-12-18 04:13:39",
+  "owner": "Đinh Văn Luận",
+  "all_ok": false,
+  "accounts": [
+    {
+      "user_id": "N/A",
+      "username": "N/A",
+      "package": "vnggamev",
+      "game_id": "2753915549",
+      "server_type": "PUBLIC",
+      "server_id": "N/A",
+      "server_players": "N/A",
+      "server_ping": "N/A",
+      "status": "Khởi động",
+      "status_icon": "🟡",
+      "exploit_ok": false,
+      "fps": "N/A",
+      "ping": "N/A",
+      "uptime": "0 phút 0 giây",
+      "event_log": [
+        "Chưa có sự kiện"
+      ]
+    }
+  ]
+}
