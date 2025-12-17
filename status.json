@@ -1,27 +1,28 @@
 {
-  "updated_at": "2025-12-18 04:53:27",
+  "updated_at": "2025-12-18 04:53:31",
   "owner": "Đinh Văn Luận",
-  "all_ok": false,
+  "all_ok": true,
   "accounts": [
     {
-      "user_id": "N/A",
-      "username": "N/A",
+      "user_id": "9198879075",
+      "username": "binbu03112",
       "package": "vnggamev",
       "game_id": "2753915549",
       "server_type": "PUBLIC",
       "server_id": "6802aa26...",
       "server_players": "1/?",
       "server_ping": "5ms",
-      "status": "Đã vào game - Chờ exploit...",
-      "status_icon": "🟡",
-      "exploit_ok": false,
-      "fps": "N/A",
-      "ping": "N/A",
-      "uptime": "0 phút 0 giây",
+      "status": "Đang chạy ổn định",
+      "status_icon": "🟢",
+      "exploit_ok": true,
+      "fps": "25",
+      "ping": "924ms",
+      "uptime": "0 phút 3 giây",
       "event_log": [
         "04:50:45 - Chọn server 13ms, 1 người",
         "04:52:47 - Exploit chưa load (timeout 90s)",
-        "04:52:55 - Chọn server 5ms, 1 người"
+        "04:52:55 - Chọn server 5ms, 1 người",
+        "04:53:28 - Vào game thành công"
       ]
     }
   ]
