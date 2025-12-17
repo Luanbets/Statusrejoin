@@ -1,40 +1,79 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<title>Roblox Multi Monitor</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Rejoin Status Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0d1117; color: #c9d1d9; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+        .status-card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; transition: 0.3s; }
+        .status-card:hover { border-color: #58a6ff; }
+        .online { color: #3fb950; }
+        .offline { color: #f85149; }
+        .pulse { animation: pulse-animation 2s infinite; }
+        @keyframes pulse-animation { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="max-w-5xl mx-auto">
+        <header class="flex justify-between items-center mb-8 border-b border-gray-700 pb-4">
+            <div>
+                <h1 class="text-2xl font-bold text-blue-400">🎮 Auto Rejoin Status</h1>
+                <p class="text-sm text-gray-400">Chủ sở hữu: <span class="text-white">Đinh Văn Luận</span></p>
+            </div>
+            <div id="last-update" class="text-right text-xs text-gray-500 italic">Đang cập nhật...</div>
+        </header>
 
-<style>
-body {
-  background: #0b0f14;
-  color: #c9d1d9;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  padding: 14px;
-}
+        <div id="status-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="col-span-full text-center py-20">
+                <p class="pulse">Đang tải dữ liệu từ script...</p>
+            </div>
+        </div>
+    </div>
 
-h1 {
-  color: #58a6ff;
-  font-size: 20px;
-  margin-bottom: 4px;
-}
+    <script>
+        async function fetchStatus() {
+            try {
+                // Tự động fetch file status.json trong cùng thư mục
+                const response = await fetch('status.json?t=' + new Date().getTime());
+                const data = await response.json();
+                
+                document.getElementById('last-update').innerText = 'Cập nhật cuối: ' + data.last_update;
+                
+                const container = document.getElementById('status-container');
+                container.innerHTML = '';
 
-.subtitle {
-  color: #8b949e;
-  margin-bottom: 16px;
-}
+                data.accounts.forEach(acc => {
+                    const card = `
+                        <div class="status-card p-5">
+                            <div class="flex justify-between items-start mb-4">
+                                <h2 class="text-lg font-bold text-green-400">${acc.username}</h2>
+                                <span class="px-2 py-1 text-xs rounded ${acc.is_running ? 'bg-green-900 text-green-300' : 'bg-red-900 text-red-300'}">
+                                    ${acc.is_running ? '● Running' : '○ Offline'}
+                                </span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-y-2 text-sm">
+                                <div class="text-gray-400">Package:</div> <div class="text-right font-mono">${acc.package}</div>
+                                <div class="text-gray-400">FPS / Ping:</div> <div class="text-right">${acc.fps} / ${acc.ping}ms</div>
+                                <div class="text-gray-400">Server:</div> <div class="text-right text-blue-300">${acc.server_id}</div>
+                                <div class="text-gray-400">Status:</div> <div class="text-right italic text-yellow-500">${acc.current_status}</div>
+                                <div class="text-gray-400">Uptime:</div> <div class="text-right">${acc.uptime}</div>
+                            </div>
+                        </div>
+                    `;
+                    container.innerHTML += card;
+                });
+            } catch (e) {
+                console.error("Lỗi fetch data:", e);
+            }
+        }
 
-.box {
-  border: 1px solid #30363d;
-  border-radius: 6px;
-  margin-bottom: 10px;
-  overflow: hidden;
-}
-
-.summary {
-  padding: 12px;
-  cursor: pointer;
-  display: flex;
+        setInterval(fetchStatus, 5000); // Cập nhật mỗi 5 giây
+        fetchStatus();
+    </script>
+</body>
+</html>  display: flex;
   justify-content: space-between;
   align-items: center;
 }
