@@ -1,27 +1,25 @@
 {
-  "updated_at": "2025-12-18 04:44:41",
+  "updated_at": "2025-12-18 04:46:16",
   "owner": "Đinh Văn Luận",
-  "all_ok": true,
+  "all_ok": false,
   "accounts": [
     {
-      "user_id": "9198879075",
-      "username": "binbu03112",
+      "user_id": "N/A",
+      "username": "N/A",
       "package": "vnggamev",
       "game_id": "2753915549",
       "server_type": "PUBLIC",
-      "server_id": "907972b2...",
-      "server_players": "1/12",
-      "server_ping": "5ms",
-      "status": "Đang chạy ổn định",
-      "status_icon": "🟢",
-      "exploit_ok": true,
-      "fps": "25",
-      "ping": "134ms",
-      "uptime": "7 phút 40 giây",
+      "server_id": "N/A",
+      "server_players": "N/A",
+      "server_ping": "N/A",
+      "status": "Khởi động",
+      "status_icon": "🟡",
+      "exploit_ok": false,
+      "fps": "N/A",
+      "ping": "N/A",
+      "uptime": "0 phút 0 giây",
       "event_log": [
-        "04:36:27 - Chọn server 6ms, 1 người",
-        "04:37:01 - Vào game thành công",
-        "04:38:31 - Sẵn sàng cho account tiếp theo"
+        "Chưa có sự kiện"
       ]
     }
   ]
