@@ -1,5 +1,5 @@
 {
-  "updated_at": "2025-12-18 04:52:43",
+  "updated_at": "2025-12-18 04:52:48",
   "owner": "Đinh Văn Luận",
   "all_ok": false,
   "accounts": [
@@ -12,14 +12,15 @@
       "server_id": "23f69fad...",
       "server_players": "1/?",
       "server_ping": "13ms",
-      "status": "Đã vào game - Chờ exploit...",
+      "status": "Đang tắt Roblox...",
       "status_icon": "🟡",
       "exploit_ok": false,
       "fps": "N/A",
       "ping": "N/A",
       "uptime": "0 phút 0 giây",
       "event_log": [
-        "04:50:45 - Chọn server 13ms, 1 người"
+        "04:50:45 - Chọn server 13ms, 1 người",
+        "04:52:47 - Exploit chưa load (timeout 90s)"
       ]
     }
   ]
